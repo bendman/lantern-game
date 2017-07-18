@@ -4,23 +4,33 @@ using UnityEngine;
 
 public class SwipeManager : MonoBehaviour
 {
+	// 
+	// Static properties
+	//
 	public enum SwipeDirection { Left, Right }
+	private static SwipeManager instance;
 
+	// 
+	// Instance properties
+	//
 	public delegate void Swipe(SwipeDirection direction, Vector2 delta);
 	public static event Swipe OnSwipe;
 
 	private Vector2 initialTouchPosition;
-	private SwipeManager instance;
+
+	//
+	// Methods
+	//
 
 	private void Awake()
 	{
 		// Handle persistant instance
-		if (instance != null) { Destroy(gameObject); }
-		else
-		{
-			instance = this;
-			GameObject.DontDestroyOnLoad(gameObject);
+		if (instance != null) {
+			Destroy(gameObject);
+			return;
 		}
+		instance = this;
+		GameObject.DontDestroyOnLoad(gameObject);
 	}
 
 	private void Update()

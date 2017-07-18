@@ -22,8 +22,9 @@ GameObject:
   - component: {fileID: 33413988778247360}
   - component: {fileID: 65005084404301020}
   - component: {fileID: 23004547602871332}
+  - component: {fileID: 114213801978100558}
   - component: {fileID: 114138053840352916}
-  - component: {fileID: 114743778038634688}
+  - component: {fileID: 114591768289122516}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -65,7 +66,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4011671013237732
 Transform:
   m_ObjectHideFlags: 1
@@ -255,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9945eb9e078474590a53154f37122bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114743778038634688
+--- !u!114 &114213801978100558
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -263,9 +264,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 1014810157868396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 113b4cd7ff87c41a3854da870607b314, type: 3}
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 158
+    i1: 60
+    i2: 154
+    i3: 172
+    i4: 199
+    i5: 186
+    i6: 52
+    i7: 200
+    i8: 138
+    i9: 57
+    i10: 156
+    i11: 47
+    i12: 18
+    i13: 61
+    i14: 32
+    i15: 241
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
+--- !u!114 &114591768289122516
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1014810157868396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!124 &124844997307478126
 Behaviour:
   m_ObjectHideFlags: 1
