@@ -55,7 +55,8 @@ public class CustomNetworkHUD : MonoBehaviour
 
 	public void StartServer()
 	{
-		manager.StartServer();
+		// manager.StartServer();
+		manager.StartHost();
 	}
 
 	// Mobile WebGL input isn't working, so disable this for now

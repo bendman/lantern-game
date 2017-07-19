@@ -10,6 +10,9 @@ public class GameManager : NetworkBehaviour
 	//
 	private static GameManager instance;
 
+	//
+	// Instance properties
+	//
 	[SyncVar]
 	private bool isRoundStarted;
 
