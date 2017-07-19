@@ -9,20 +9,13 @@ public class Player : NetworkBehaviour
 
 	private bool userMoving = true;
 
-	public override void OnStartLocalPlayer()
-	{
-		Debug.Log("starting local player");
-		// Bind to swipe events to handle turning
-		SwipeManager.OnSwipe += OnSwipe;
-
-		// Disable non-player camera and enable player camera and light if it's the local player
-		Camera.main.gameObject.SetActive(false);
-		GetComponentInChildren<Camera>(true).gameObject.SetActive(true);
-	}
+	// public override void OnStartLocalPlayer()
+	// {
+	// }
 
 	private void Update()
 	{
-		if (isLocalPlayer && userMoving)
+		if (isLocalPlayer && GameManager.IsStarted() && userMoving)
 		{
 			transform.Translate(Vector3.forward * maxSpeed * Time.deltaTime);
 		}
@@ -30,7 +23,7 @@ public class Player : NetworkBehaviour
 
 	private void OnSwipe(SwipeManager.SwipeDirection direction, Vector2 delta)
 	{
-		if (!isLocalPlayer) { return; }
+		if (!isLocalPlayer || !GameManager.IsStarted()) { return; }
 
 		Debug.Log("swiping");
 		// Ensure they swipe far enough, not just tap
@@ -43,6 +36,20 @@ public class Player : NetworkBehaviour
 		{
 			TurnPlayer(Vector2.right);
 		}
+	}
+
+	[ClientRpc]
+	public void RpcSpawn()
+	{
+		Debug.Log("spawning local player");
+		if (!isLocalPlayer) { return; }
+
+		// Bind to swipe events to handle turning
+		SwipeManager.OnSwipe += OnSwipe;
+
+		// Disable non-player camera and enable player camera and light if it's the local player
+		Camera.main.gameObject.SetActive(false);
+		GetComponentInChildren<Camera>(true).gameObject.SetActive(true);
 	}
 
 	private void TurnPlayer(Vector2 direction)

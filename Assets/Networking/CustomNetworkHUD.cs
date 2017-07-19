@@ -9,6 +9,7 @@ public class CustomNetworkHUD : MonoBehaviour
 	private GameObject ipInput;
 	private GameObject connectButton;
 	private GameObject hostButton;
+	private GameObject startButton;
 
 	private void Awake()
 	{
@@ -16,6 +17,7 @@ public class CustomNetworkHUD : MonoBehaviour
 		ipInput = transform.Find("IPInput").gameObject;
 		connectButton = transform.Find("ConnectButton").gameObject;
 		hostButton = transform.Find("HostButton").gameObject;
+		startButton = transform.Find("StartButton").gameObject;
 
 		// Hide host button for WebGL clients, because they can't host
 		if (Application.platform == RuntimePlatform.WebGLPlayer)
@@ -26,18 +28,24 @@ public class CustomNetworkHUD : MonoBehaviour
 
 	private void Update()
 	{
-		if (manager.IsClientConnected())
+		if (NetworkServer.active)
 		{
 			ipInput.SetActive(false);
 			connectButton.SetActive(false);
 			hostButton.SetActive(false);
+
+			// Host can see start button before game starts
+			if (GameManager.IsStarted()) { startButton.SetActive(false); }
+			else { startButton.SetActive(true); }
 		}
-		else if (NetworkServer.active)
+		else if (NetworkClient.active && manager.IsClientConnected())
 		{
 			ipInput.SetActive(false);
 			connectButton.SetActive(false);
 			hostButton.SetActive(false);
+			startButton.SetActive(false);
 		}
+
 	}
 
 	public void StartClient()
