@@ -4,8 +4,10 @@ using UnityEngine;
 
 public static class GridSystem
 {
+	/// The size of each grid square
 	public const float scale = 6f;
 
+	/// Get the center of the grid square containing a position
 	public static Vector3 GetPoint(Vector3 position)
 	{
 		return new Vector3(
@@ -15,6 +17,8 @@ public static class GridSystem
 		);
 	}
 
+	/// Get the next grid square center in front of a position, given a
+	/// position and a forward vector
 	public static Vector3 GetForwardPoint(Vector3 position, Vector3 forward)
 	{
 		Vector3 currentGridSquare = GetPoint(position);
@@ -26,6 +30,8 @@ public static class GridSystem
 			: currentGridSquare + (forward * scale);
 	}
 
+	/// Check whether a position is past a target position, given a target position,
+	/// a forward vector, and a current position
 	public static bool IsBeyondTargetPosition(Vector3 targetPosition, Vector3 forward, Vector3 position)
 	{
 		Vector3 axisPosition = Vector3.Scale(position, forward);
