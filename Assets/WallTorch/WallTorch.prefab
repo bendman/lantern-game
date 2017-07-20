@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 65964021805402366}
   - component: {fileID: 54295333632713750}
   - component: {fileID: 114714151625986942}
+  - component: {fileID: 114905697321987088}
   m_Layer: 0
   m_Name: WallTorch
   m_TagString: WallTorch
@@ -276,6 +277,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b59933d53e3b45198a68a2d22ce5d79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114905697321987088
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1317711612047744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 119
+    i1: 77
+    i2: 202
+    i3: 4
+    i4: 46
+    i5: 199
+    i6: 52
+    i7: 1
+    i8: 169
+    i9: 215
+    i10: 211
+    i11: 103
+    i12: 178
+    i13: 195
+    i14: 84
+    i15: 196
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!198 &198115204371802926
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -45,16 +45,17 @@ public class CustomNetworkHUD : MonoBehaviour
 			hostButton.SetActive(false);
 			startButton.SetActive(false);
 		}
-
 	}
 
 	public void StartClient()
 	{
+		Debug.Log("Starting client");
 		manager.StartClient();
 	}
 
 	public void StartServer()
 	{
+		Debug.Log("Starting server");
 		// manager.StartServer();
 		manager.StartHost();
 	}

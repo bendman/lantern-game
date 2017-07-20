@@ -72,6 +72,7 @@ public class GameManager : NetworkBehaviour
 	
 	private void PlaceTorch(Vector3 position)
 	{
-		Instantiate(torchPrefab, position, Quaternion.identity);
+		GameObject torch = Instantiate(torchPrefab, position, Quaternion.identity);
+		NetworkServer.Spawn(torch);
 	}
 }
