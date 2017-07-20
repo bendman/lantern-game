@@ -13,6 +13,8 @@ public class GameManager : NetworkBehaviour
 	//
 	// Instance properties
 	//
+	[SerializeField]
+	private GameObject torchPrefab;
 	[SyncVar]
 	private bool isRoundStarted;
 
@@ -46,6 +48,30 @@ public class GameManager : NetworkBehaviour
 			Debug.Log("Spawning players");
 			player.RpcSpawn();
 		}
+
+		PlaceTorches();
+	}
+
+	/// Temporary until we get a maze in place, this just places torches
+	/// at regular intervals.
+	private void PlaceTorches()
+	{
+		Vector3 levelSize = GameObject.Find("Floor").GetComponent<Renderer>().bounds.size;
+
+		float maxX = levelSize.x / 2 - (GridSystem.scale / 2);
+		float maxZ = levelSize.z / 2 - (GridSystem.scale / 2);
+
+		for (float xPos = -maxX; xPos <= maxX; xPos += GridSystem.scale)
+		{
+			for (float zPos = -maxZ; zPos <= maxZ; zPos += GridSystem.scale)
+			{
+				PlaceTorch(new Vector3(xPos, 1.5f, zPos));
+			}
+		}
 	}
 	
+	private void PlaceTorch(Vector3 position)
+	{
+		Instantiate(torchPrefab, position, Quaternion.identity);
+	}
 }

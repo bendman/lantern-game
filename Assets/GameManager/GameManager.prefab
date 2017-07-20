@@ -84,3 +84,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34ed7c75b6ec0419099a622456ab3c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  torchPrefab: {fileID: 1317711612047744, guid: 774dca042ec73401a9d7d367b2c354c4,
+    type: 2}

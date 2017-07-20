@@ -23,10 +23,27 @@ GameObject:
   - component: {fileID: 65005084404301020}
   - component: {fileID: 23004547602871332}
   - component: {fileID: 114213801978100558}
-  - component: {fileID: 114138053840352916}
   - component: {fileID: 114591768289122516}
+  - component: {fileID: 114138053840352916}
   m_Layer: 0
   m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1402075565499192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4888412887233068}
+  - component: {fileID: 65422135459935336}
+  - component: {fileID: 114987084634921086}
+  m_Layer: 0
+  m_Name: TorchLighter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,13 +90,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1741447147885474}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.045112208, y: -0, z: -0, w: 0.99898195}
   m_LocalPosition: {x: 0, y: 1, z: 0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4603199667974452}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 5.1710005, y: 0, z: 0}
 --- !u!4 &4603199667974452
 Transform:
   m_ObjectHideFlags: 1
@@ -92,6 +109,7 @@ Transform:
   m_Children:
   - {fileID: 4011671013237732}
   - {fileID: 4731409943165354}
+  - {fileID: 4888412887233068}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -101,13 +119,26 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1806258761692814}
-  m_LocalRotation: {x: 0.36081865, y: -0, z: -0, w: 0.9326361}
-  m_LocalPosition: {x: 0, y: 7.5, z: -5.1}
+  m_LocalRotation: {x: 0.24223061, y: -0, z: -0, w: 0.9702187}
+  m_LocalPosition: {x: 0, y: 10.77, z: -16.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4603199667974452}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 42.301003, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 28.036001, y: 0, z: 0}
+--- !u!4 &4888412887233068
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1402075565499192}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4603199667974452}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &20413952625896232
 Camera:
   m_ObjectHideFlags: 1
@@ -126,7 +157,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 24
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -195,6 +226,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65422135459935336
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1402075565499192}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!81 &81523010500280380
 AudioListener:
   m_ObjectHideFlags: 1
@@ -217,11 +260,11 @@ Light:
   m_GameObject: {fileID: 1741447147885474}
   m_Enabled: 1
   serializedVersion: 8
-  m_Type: 2
+  m_Type: 0
   m_Color: {r: 0.78676474, g: 0.76442254, b: 0.58428854, a: 1}
-  m_Intensity: 2
-  m_Range: 30
-  m_SpotAngle: 30
+  m_Intensity: 15
+  m_Range: 6
+  m_SpotAngle: 119.8
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -309,6 +352,17 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &114987084634921086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1402075565499192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50fd7195cd69b45ec881d1db06d94c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!124 &124844997307478126
 Behaviour:
   m_ObjectHideFlags: 1
