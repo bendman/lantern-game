@@ -5,15 +5,16 @@ using UnityEngine;
 public static class GridSystem
 {
 	/// The size of each grid square
-	public const float scale = 6f;
+	public static float gridSquareSize = 6f;
+	public static int levelSquaresPerSide = 36;
 
 	/// Get the center of the grid square containing a position
 	public static Vector3 GetPoint(Vector3 position)
 	{
 		return new Vector3(
-			Mathf.Round(position.x / scale) * scale,
+			Mathf.Round(position.x / gridSquareSize) * gridSquareSize,
 			position.y,
-			Mathf.Round(position.z / scale) * scale
+			Mathf.Round(position.z / gridSquareSize) * gridSquareSize
 		);
 	}
 
@@ -27,7 +28,7 @@ public static class GridSystem
 		// or the next grid square center.
 		return IsBeyondTargetPosition(position, forward, currentGridSquare)
 			? currentGridSquare
-			: currentGridSquare + (forward * scale);
+			: currentGridSquare + (forward * gridSquareSize);
 	}
 
 	/// Check whether a position is past a target position, given a target position,

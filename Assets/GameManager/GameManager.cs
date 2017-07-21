@@ -56,23 +56,23 @@ public class GameManager : NetworkBehaviour
 	/// at regular intervals.
 	private void PlaceTorches()
 	{
-		Vector3 levelSize = GameObject.Find("Floor").GetComponent<Renderer>().bounds.size;
+		float levelSize = GridSystem.gridSquareSize * GridSystem.levelSquaresPerSide;
 
-		float maxX = levelSize.x / 2 - (GridSystem.scale / 2);
-		float maxZ = levelSize.z / 2 - (GridSystem.scale / 2);
+		float maxX = levelSize / 2;// - (GridSystem.gridSquareSize / 2);
+		float maxZ = levelSize / 2;// - (GridSystem.gridSquareSize / 2);
 
-		for (float xPos = -maxX; xPos <= maxX; xPos += GridSystem.scale)
+		for (float xPos = -maxX; xPos <= maxX; xPos += GridSystem.gridSquareSize)
 		{
-			for (float zPos = -maxZ; zPos <= maxZ; zPos += GridSystem.scale)
+			for (float zPos = -maxZ; zPos <= maxZ; zPos += GridSystem.gridSquareSize)
 			{
-				PlaceTorch(new Vector3(xPos, 1.5f, zPos));
+				PlaceTorch(new Vector3(xPos, 2f, zPos));
 			}
 		}
 	}
 	
-	private void PlaceTorch(Vector3 position)
+	public static void PlaceTorch(Vector3 position)
 	{
-		GameObject torch = Instantiate(torchPrefab, position, Quaternion.identity);
+		GameObject torch = Instantiate(instance.torchPrefab, position, Quaternion.identity);
 		NetworkServer.Spawn(torch);
 	}
 }
