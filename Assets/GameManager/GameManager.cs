@@ -56,16 +56,16 @@ public class GameManager : NetworkBehaviour
 	/// at regular intervals.
 	private void PlaceTorches()
 	{
-		float levelSize = GridSystem.gridSquareSize * GridSystem.levelSquaresPerSide;
-
-		float maxX = levelSize / 2;// - (GridSystem.gridSquareSize / 2);
-		float maxZ = levelSize / 2;// - (GridSystem.gridSquareSize / 2);
-
-		for (float xPos = -maxX; xPos <= maxX; xPos += GridSystem.gridSquareSize)
+		for (int xSquare = 0; xSquare <= GridSystem.levelSquaresPerSide; xSquare += 1)
 		{
-			for (float zPos = -maxZ; zPos <= maxZ; zPos += GridSystem.gridSquareSize)
+			for (int zSquare = 0; zSquare <= GridSystem.levelSquaresPerSide; zSquare += 1)
 			{
-				PlaceTorch(new Vector3(xPos, 2f, zPos));
+				if (xSquare % 2 == zSquare % 2) { continue; }
+				PlaceTorch(new Vector3(
+					(xSquare - (GridSystem.levelSquaresPerSide / 2) - 0.5f) * GridSystem.gridSquareSize,
+					2f,
+					(zSquare - (GridSystem.levelSquaresPerSide / 2) - 0.5f) * GridSystem.gridSquareSize
+				));
 			}
 		}
 	}
