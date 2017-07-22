@@ -13,6 +13,8 @@ public class GameManager : NetworkBehaviour
 	//
 	// Instance properties
 	//
+	public MapMaker map;
+	public string level = "testing";
 	[SerializeField]
 	private GameObject torchPrefab;
 	[SyncVar]
@@ -50,6 +52,7 @@ public class GameManager : NetworkBehaviour
 		}
 
 		PlaceTorches();
+		map.makeMap(level + ".csv", GridSystem.scale);
 	}
 
 	/// Temporary until we get a maze in place, this just places torches
