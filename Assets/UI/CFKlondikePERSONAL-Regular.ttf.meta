@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 9dd711f45d67e4a9fa9d05dd57aeb457
+timeCreated: 1500925214
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: CF Klondike PERSONAL
+  fontNames:
+  - CF Klondike PERSONAL
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

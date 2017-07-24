@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class CustomNetworkHUD : MonoBehaviour
+public class MultiplayerSetupUI : UIScene
 {
 	private NetworkManager manager;
 	private GameObject ipInput;
@@ -11,13 +11,14 @@ public class CustomNetworkHUD : MonoBehaviour
 	private GameObject hostButton;
 	private GameObject startButton;
 
-	private void Awake()
+	public override void Awake()
 	{
+		base.Awake();
+
 		manager = FindObjectOfType<NetworkManager>();
 		ipInput = transform.Find("IPInput").gameObject;
 		connectButton = transform.Find("ConnectButton").gameObject;
 		hostButton = transform.Find("HostButton").gameObject;
-		startButton = transform.Find("StartButton").gameObject;
 
 		// Hide host button for WebGL clients, because they can't host
 		if (Application.platform == RuntimePlatform.WebGLPlayer)
@@ -33,10 +34,6 @@ public class CustomNetworkHUD : MonoBehaviour
 			ipInput.SetActive(false);
 			connectButton.SetActive(false);
 			hostButton.SetActive(false);
-
-			// Host can see start button before game starts
-			if (GameManager.IsStarted()) { startButton.SetActive(false); }
-			else { startButton.SetActive(true); }
 		}
 		else if (NetworkClient.active && manager.IsClientConnected())
 		{
@@ -51,13 +48,15 @@ public class CustomNetworkHUD : MonoBehaviour
 	{
 		Debug.Log("Starting client");
 		manager.StartClient();
+		UIManager.SetActiveUI(UIManager.instance.sceneMultiplayerLobby);
 	}
 
 	public void StartServer()
 	{
-		Debug.Log("Starting server");
+		Debug.Log("Starting host");
 		// manager.StartServer();
 		manager.StartHost();
+		UIManager.SetActiveUI(UIManager.instance.sceneMultiplayerLobby);
 	}
 
 	// Mobile WebGL input isn't working, so disable this for now

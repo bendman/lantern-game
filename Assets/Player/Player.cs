@@ -71,6 +71,12 @@ public class Player : NetworkBehaviour
 		GetComponentInChildren<Camera>(true).gameObject.SetActive(true);
 	}
 
+	[ClientRpc]
+	public void RpcStop()
+	{
+		userMoving = false;
+	}
+
 	private void TurnPlayer(Vector2 direction)
 	{
 		// TODO: check for the next available turn in that direction

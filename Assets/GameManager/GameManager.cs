@@ -49,6 +49,7 @@ public class GameManager : NetworkBehaviour
 			player.RpcSpawn();
 		}
 
+		UIManager.HideUI();
 		PlaceTorches();
 	}
 
@@ -69,10 +70,28 @@ public class GameManager : NetworkBehaviour
 			}
 		}
 	}
-	
+
 	public static void PlaceTorch(Vector3 position)
 	{
 		GameObject torch = Instantiate(instance.torchPrefab, position, Quaternion.identity);
 		NetworkServer.Spawn(torch);
+	}
+
+	public static void FinishGame(NetworkBehaviour winningPlayer)
+	{
+		if (winningPlayer.isLocalPlayer)
+		{
+			UIManager.SetActiveUI(UIManager.instance.sceneVictory);
+		}
+		else
+		{
+			UIManager.SetActiveUI(UIManager.instance.sceneLoss);
+		}
+
+		Player[] players = FindObjectsOfType<Player>();
+		foreach (Player player in players)
+		{
+			player.RpcStop();
+		}
 	}
 }
