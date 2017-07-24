@@ -13,7 +13,7 @@ public class GameManager : NetworkBehaviour
 	//
 	// Instance properties
 	//
-	public MapMaker map;
+	public MapMaker mapper;
 	public string level = "testing";
 	[SerializeField]
 	private GameObject torchPrefab;
@@ -51,31 +51,31 @@ public class GameManager : NetworkBehaviour
 			player.RpcSpawn();
 		}
 
+		mapper.makeMap(level + ".csv", GridSystem.gridSquareSize);
 		PlaceTorches();
-		map.makeMap(level + ".csv", GridSystem.scale);
 	}
 
 	/// Temporary until we get a maze in place, this just places torches
 	/// at regular intervals.
 	private void PlaceTorches()
 	{
-		Vector3 levelSize = GameObject.Find("Floor").GetComponent<Renderer>().bounds.size;
-
-		float maxX = levelSize.x / 2 - (GridSystem.scale / 2);
-		float maxZ = levelSize.z / 2 - (GridSystem.scale / 2);
-
-		for (float xPos = -maxX; xPos <= maxX; xPos += GridSystem.scale)
+		for (int xSquare = 0; xSquare <= GridSystem.levelSquaresPerSide; xSquare += 1)
 		{
-			for (float zPos = -maxZ; zPos <= maxZ; zPos += GridSystem.scale)
+			for (int zSquare = 0; zSquare <= GridSystem.levelSquaresPerSide; zSquare += 1)
 			{
-				PlaceTorch(new Vector3(xPos, 1.5f, zPos));
+				if (xSquare % 2 == zSquare % 2) { continue; }
+				PlaceTorch(new Vector3(
+					(xSquare - (GridSystem.levelSquaresPerSide / 2) - 0.5f) * GridSystem.gridSquareSize,
+					2f,
+					(zSquare - (GridSystem.levelSquaresPerSide / 2) - 0.5f) * GridSystem.gridSquareSize
+				));
 			}
 		}
 	}
 	
-	private void PlaceTorch(Vector3 position)
+	public static void PlaceTorch(Vector3 position)
 	{
-		GameObject torch = Instantiate(torchPrefab, position, Quaternion.identity);
+		GameObject torch = Instantiate(instance.torchPrefab, position, Quaternion.identity);
 		NetworkServer.Spawn(torch);
 	}
 }

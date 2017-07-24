@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class Player : NetworkBehaviour
 {
-	private float maxSpeed = 3f;
+	private float maxSpeed = 4.5f;
 
 	private bool userMoving = true;
 	// private int pendingTurnDirection = 0; // -1, 0, 1 = Left, None, Right
