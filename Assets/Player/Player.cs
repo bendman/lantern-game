@@ -5,23 +5,45 @@ using UnityEngine.Networking;
 
 public class Player : NetworkBehaviour
 {
-	private float maxSpeed = 4.5f;
+	private float maxSpeed = 3f;
 
-	private bool userMoving = true;
+	private bool isMoving = true;
 	// private int pendingTurnDirection = 0; // -1, 0, 1 = Left, None, Right
 	private Vector2 pendingTurnDirection = Vector2.zero;
 	private Vector3 pendingTurnPosition;
+	private Animator bodyAnimator;
+	private Animator cameraBoomAnimator;
 
 	// public override void OnStartLocalPlayer()
 	// {
 	// }
 
+	private void Awake()
+	{
+		bodyAnimator = transform.Find("PlayerBody").GetComponent<Animator>();
+		cameraBoomAnimator = transform.Find("CameraBoom").GetComponent<Animator>();
+	}
+
 	private void Update()
 	{
-		if (!isLocalPlayer || !GameManager.IsStarted() || !userMoving) { return; }
+		if (!isLocalPlayer || !GameManager.IsStarted() || !isMoving) { return; }
 
 		HandleForwardMovement();
 		HandleTurns();
+	}
+
+	public void StartWalking()
+	{
+		bodyAnimator.SetBool("isWalking", true);
+		cameraBoomAnimator.SetBool("isVictory", false);
+		isMoving = true;
+	}
+
+	public void StopWalking()
+	{
+		bodyAnimator.SetBool("isWalking", false);
+		cameraBoomAnimator.SetBool("isVictory", true);
+		isMoving = false;
 	}
 
 	private void HandleForwardMovement()
@@ -69,12 +91,13 @@ public class Player : NetworkBehaviour
 		// Disable non-player camera and enable player camera and light if it's the local player
 		Camera.main.gameObject.SetActive(false);
 		GetComponentInChildren<Camera>(true).gameObject.SetActive(true);
+		StartWalking();
 	}
 
 	[ClientRpc]
 	public void RpcStop()
 	{
-		userMoving = false;
+		StopWalking();
 	}
 
 	private void TurnPlayer(Vector2 direction)

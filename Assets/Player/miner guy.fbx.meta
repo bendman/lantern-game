@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3c93a9247e2bc41e9b46c26f5ab4bb37
-timeCreated: 1500851563
+guid: a915491f9b214479d909f7b929f57c8f
+timeCreated: 1500935230
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -57,7 +57,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: 
+    motionNodeName: <Root Transform>
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
@@ -70,7 +70,227 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|Action
+      takeName: Armature|Action
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/hips
+        weight: 1
+      - path: Armature/hips/spine
+        weight: 1
+      - path: Armature/hips/spine/head
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.L
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.R
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/hips/UpperLeg.L
+        weight: 1
+      - path: Armature/hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/hips/UpperLeg.R
+        weight: 1
+      - path: Armature/hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Miner
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|ArmatureAction
+      takeName: Armature|ArmatureAction
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/hips
+        weight: 1
+      - path: Armature/hips/spine
+        weight: 1
+      - path: Armature/hips/spine/head
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.L
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.R
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/hips/UpperLeg.L
+        weight: 1
+      - path: Armature/hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/hips/UpperLeg.R
+        weight: 1
+      - path: Armature/hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Miner
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Idle
+      takeName: Armature|Idle
+      firstFrame: 0
+      lastFrame: 604
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/hips
+        weight: 1
+      - path: Armature/hips/spine
+        weight: 1
+      - path: Armature/hips/spine/head
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.L
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.R
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/hips/UpperLeg.L
+        weight: 1
+      - path: Armature/hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/hips/UpperLeg.R
+        weight: 1
+      - path: Armature/hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Miner
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|walk cycle
+      takeName: Armature|walk cycle
+      firstFrame: 0
+      lastFrame: 79
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
