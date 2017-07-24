@@ -11,6 +11,7 @@ public class Player : NetworkBehaviour
 	// private int pendingTurnDirection = 0; // -1, 0, 1 = Left, None, Right
 	private Vector2 pendingTurnDirection = Vector2.zero;
 	private Vector3 pendingTurnPosition;
+	private Vector3 stopPoint;
 
 	// public override void OnStartLocalPlayer()
 	// {
@@ -18,10 +19,33 @@ public class Player : NetworkBehaviour
 
 	private void Update()
 	{
+		userMoving = WaitingForInput();
 		if (!isLocalPlayer || !GameManager.IsStarted() || !userMoving) { return; }
 
 		HandleForwardMovement();
 		HandleTurns();
+	}
+
+	private bool WaitingForInput() {
+		bool canMove = true;
+		int wallLayer = 1 << 9;
+
+		bool up = Physics.Raycast(transform.position, transform.forward, GridSystem.gridSquareSize, wallLayer);
+		bool right = Physics.Raycast(transform.position, transform.right, GridSystem.gridSquareSize, wallLayer);
+		bool left = Physics.Raycast(transform.position, -transform.right, GridSystem.gridSquareSize, wallLayer);
+
+		//stopPoint = GridSystem.GetForwardPoint(transform.position, transform.forward);
+
+		if(up) {
+			canMove = false;
+		}
+		if(!up && !right) {
+			canMove = false;
+		}
+		if(!up && !left) {
+			canMove = false;
+		}
+		return canMove;
 	}
 
 	private void HandleForwardMovement()
