@@ -10,7 +10,7 @@ public class Player : NetworkBehaviour
 	//private bool userMoving = true;
 	// private int pendingTurnDirection = 0; // -1, 0, 1 = Left, None, Right
 	private Vector2 pendingTurnDirection = Vector2.zero;
-	private Vector3 pendingTurnPosition;
+	//private Vector3 pendingTurnPosition;
 	private Vector3 pendingStopPoint;
 
 	// public override void OnStartLocalPlayer()
@@ -23,7 +23,7 @@ public class Player : NetworkBehaviour
 		if (!isLocalPlayer || !GameManager.IsStarted() || !CanMove()) { return; }
 
 		HandleForwardMovement();
-		HandleTurns();
+		//HandleTurns();
 	}
 
 	private bool CanMove() {
@@ -40,13 +40,13 @@ public class Player : NetworkBehaviour
 		Debug.DrawRay(transform.position + Vector3.up, -transform.right, Color.green);
 
 
-		//Checks for walls and openings
-		if(up || (!up && !right) || (!up && !left) || (!right && !left)) {
+		//Checks for walls
+		if(up || !right || !left) {
 			pendingStopPoint = GridSystem.GetPoint(transform.position);
-		}
 
-		if(GridSystem.IsBeyondTargetPosition(pendingStopPoint, transform.forward, transform.position)) {
-			canMove = false;
+			if(GridSystem.IsBeyondTargetPosition(pendingStopPoint, transform.forward, transform.position)) {
+				canMove = HandleTurns();
+			}
 		}
 
 		return canMove;
@@ -57,16 +57,16 @@ public class Player : NetworkBehaviour
 		transform.Translate(Vector3.forward * maxSpeed * Time.deltaTime);
 	}
 
-	private void HandleTurns()
+	private bool HandleTurns()
 	{
 		// Determine what direction the player is facing, and
 		// check if they have reached the next available turn.
-		if (pendingTurnDirection == Vector2.zero) { return; }
-		if (!GridSystem.IsBeyondTargetPosition(pendingTurnPosition, transform.forward, transform.position))
-		{ return; }
+		if (pendingTurnDirection == Vector2.zero) {return false; }
+//		if (!GridSystem.IsBeyondTargetPosition(pendingTurnPosition, transform.forward, transform.position)){ return; }
 
 		ExecuteTurn(pendingTurnDirection);
 		pendingTurnDirection = Vector2.zero;
+		return true;
 	}
 
 	private void OnSwipe(SwipeManager.SwipeDirection direction, Vector2 delta) {
@@ -105,7 +105,7 @@ public class Player : NetworkBehaviour
 	{
 		// TODO: check for the next available turn in that direction
 		pendingTurnDirection = direction;
-		pendingTurnPosition = GridSystem.GetForwardPoint(transform.position, transform.forward);
+		//pendingTurnPosition = GridSystem.GetForwardPoint(transform.position, transform.forward);
 	}
 
 	private void ExecuteTurn(Vector2 direction)
