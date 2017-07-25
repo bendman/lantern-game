@@ -11,6 +11,7 @@ public class Player : NetworkBehaviour
 	// private int pendingTurnDirection = 0; // -1, 0, 1 = Left, None, Right
 	private Vector2 pendingTurnDirection = Vector2.zero;
 	private Vector3 pendingTurnPosition;
+	private Animator myAnimator;
 	private Animator bodyAnimator;
 	private Animator cameraBoomAnimator;
 
@@ -20,6 +21,7 @@ public class Player : NetworkBehaviour
 
 	private void Awake()
 	{
+		myAnimator = transform.GetComponent<Animator>();
 		bodyAnimator = transform.Find("PlayerBody").GetComponent<Animator>();
 		cameraBoomAnimator = transform.Find("CameraBoom").GetComponent<Animator>();
 	}
@@ -111,5 +113,7 @@ public class Player : NetworkBehaviour
 	{
 		float angle = (direction == Vector2.left) ? -90f : 90f;
 		transform.Rotate(0, angle, 0, Space.World);
+		// if (direction == Vector2.left) { myAnimator.SetTrigger("LeftTurn"); }
+		// else if (direction == Vector2.right) { myAnimator.SetTrigger("RightTurn"); }
 	}
 }
