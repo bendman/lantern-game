@@ -361,7 +361,7 @@ Prefab:
     - target: {fileID: 114431507413856840, guid: 9e3a0a6b5a1c2420a9cee9308ef0fd34,
         type: 2}
       propertyPath: level
-      value: lvl1
+      value: Labri-1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e3a0a6b5a1c2420a9cee9308ef0fd34, type: 2}

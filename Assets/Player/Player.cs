@@ -7,11 +7,11 @@ public class Player : NetworkBehaviour
 {
 	private float maxSpeed = 4.5f;
 
-	private bool userMoving = true;
+	//private bool userMoving = true;
 	// private int pendingTurnDirection = 0; // -1, 0, 1 = Left, None, Right
 	private Vector2 pendingTurnDirection = Vector2.zero;
 	private Vector3 pendingTurnPosition;
-	private Vector3 stopPoint;
+	private Vector3 pendingStopPoint;
 
 	// public override void OnStartLocalPlayer()
 	// {
@@ -19,32 +19,36 @@ public class Player : NetworkBehaviour
 
 	private void Update()
 	{
-		userMoving = WaitingForInput();
-		if (!isLocalPlayer || !GameManager.IsStarted() || !userMoving) { return; }
+		//userMoving = CanMove();
+		if (!isLocalPlayer || !GameManager.IsStarted() || !CanMove()) { return; }
 
 		HandleForwardMovement();
 		HandleTurns();
 	}
 
-	private bool WaitingForInput() {
+	private bool CanMove() {
 		bool canMove = true;
 		int wallLayer = 1 << 9;
 
 		bool up = Physics.Raycast(transform.position, transform.forward, GridSystem.gridSquareSize, wallLayer);
+		Debug.DrawRay(transform.position + Vector3.up, transform.forward, Color.blue);
+
 		bool right = Physics.Raycast(transform.position, transform.right, GridSystem.gridSquareSize, wallLayer);
+		Debug.DrawRay(transform.position + Vector3.up, transform.right, Color.red);
+
 		bool left = Physics.Raycast(transform.position, -transform.right, GridSystem.gridSquareSize, wallLayer);
+		Debug.DrawRay(transform.position + Vector3.up, -transform.right, Color.green);
 
-		//stopPoint = GridSystem.GetForwardPoint(transform.position, transform.forward);
 
-		if(up) {
+		//Checks for walls and openings
+		if(up || (!up && !right) || (!up && !left) || (!right && !left)) {
+			pendingStopPoint = GridSystem.GetPoint(transform.position);
+		}
+
+		if(GridSystem.IsBeyondTargetPosition(pendingStopPoint, transform.forward, transform.position)) {
 			canMove = false;
 		}
-		if(!up && !right) {
-			canMove = false;
-		}
-		if(!up && !left) {
-			canMove = false;
-		}
+
 		return canMove;
 	}
 
@@ -65,9 +69,10 @@ public class Player : NetworkBehaviour
 		pendingTurnDirection = Vector2.zero;
 	}
 
-	private void OnSwipe(SwipeManager.SwipeDirection direction, Vector2 delta)
-	{
-		if (!isLocalPlayer || !GameManager.IsStarted()) { return; }
+	private void OnSwipe(SwipeManager.SwipeDirection direction, Vector2 delta) {
+		if(!isLocalPlayer || !GameManager.IsStarted()) {
+			return;
+		}
 
 		// Ensure they swipe far enough, not just tap
 		if (Mathf.Abs(delta.x) <= 50f) { return; }
@@ -94,6 +99,7 @@ public class Player : NetworkBehaviour
 		Camera.main.gameObject.SetActive(false);
 		GetComponentInChildren<Camera>(true).gameObject.SetActive(true);
 	}
+
 
 	private void TurnPlayer(Vector2 direction)
 	{

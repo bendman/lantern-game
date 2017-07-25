@@ -6,7 +6,7 @@ public static class GridSystem
 {
 	/// The size of each grid square
 	public static float gridSquareSize = 6f;
-	public static int levelSquaresPerSide = 21;
+	public static int levelSquaresPerSide = 23;
 
 	/// Get the center of the grid square containing a position
 	public static Vector3 GetPoint(Vector3 position)
