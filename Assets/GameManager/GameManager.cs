@@ -13,6 +13,8 @@ public class GameManager : NetworkBehaviour
 	//
 	// Instance properties
 	//
+	public MapMaker mapper;
+	public string level = "testing";
 	[SerializeField]
 	private GameObject torchPrefab;
 	[SyncVar]
@@ -37,6 +39,11 @@ public class GameManager : NetworkBehaviour
 	}
 
 	public static bool IsStarted() { return instance.isRoundStarted; }
+
+	private void Start()
+	{
+		mapper.makeMap(level + ".csv", GridSystem.gridSquareSize);
+	}
 
 	public void StartRound()
 	{

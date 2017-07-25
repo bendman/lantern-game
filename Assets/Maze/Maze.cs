@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: remove this file if it's unnecessary
 public class Maze : MonoBehaviour
 {
 	[SerializeField]

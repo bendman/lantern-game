@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 4888412887233068}
   - component: {fileID: 65422135459935336}
   - component: {fileID: 114987084634921086}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TorchLighter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
