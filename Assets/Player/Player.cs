@@ -11,10 +11,12 @@ public class Player : NetworkBehaviour
 	// private int pendingTurnDirection = 0; // -1, 0, 1 = Left, None, Right
 	private Vector2 pendingTurnDirection = Vector2.zero;
 	private Vector3 pendingTurnPosition;
-	private Vector3 pendingStopPoint;
+	private Vector3 pendingStopPoint = Vector3.zero;
 	private Animator myAnimator;
 	private Animator bodyAnimator;
 	private Animator cameraBoomAnimator;
+	private bool isPendingDecision;
+	private Vector3 previousDecisionPoint = Vector3.zero;
 
 	// public override void OnStartLocalPlayer()
 	// {
@@ -30,39 +32,43 @@ public class Player : NetworkBehaviour
 	private void Update()
 	{
 		//userMoving = CanMove();
-		Debug.Log("canmove: " + CanMove());
-		if (!isLocalPlayer || !GameManager.IsStarted() || !CanMove()) { return; }
+		if (!isLocalPlayer || !GameManager.IsStarted()) { return; }
 
-		HandleForwardMovement();
+		if (!isPendingDecision) { HandleForwardMovement(); }
+		else { HandleDecisions(); }
 		//HandleTurns();
 	}
 
-	private bool CanMove() {
-		bool canMove = true;
-		int wallLayer = 1 << 9;
+	private void HandleForwardMovement() {
+		// No stop point, so continue forward looking for one on the way
+		if (pendingStopPoint == Vector3.zero && GridSystem.GetPoint(transform.position) != previousDecisionPoint)
+		{
+			int wallLayer = 1 << 9;
 
-		bool up = Physics.Raycast(transform.position, transform.forward, GridSystem.gridSquareSize);//, wallLayer);
-		Debug.DrawRay(transform.position + Vector3.up, transform.forward * GridSystem.gridSquareSize, Color.blue);
+			bool up = Physics.Raycast(transform.position, transform.forward, GridSystem.gridSquareSize, wallLayer);
+			Debug.DrawRay(transform.position + Vector3.up, transform.forward * GridSystem.gridSquareSize, Color.blue);
 
-		bool right = Physics.Raycast(transform.position, transform.right, GridSystem.gridSquareSize);//, wallLayer);
-		Debug.DrawRay(transform.position + Vector3.up, transform.right * GridSystem.gridSquareSize, Color.red);
+			bool right = Physics.Raycast(transform.position, transform.right, GridSystem.gridSquareSize, wallLayer);
+			Debug.DrawRay(transform.position + Vector3.up, transform.right * GridSystem.gridSquareSize, Color.red);
 
-		bool left = Physics.Raycast(transform.position, -transform.right, GridSystem.gridSquareSize);//, wallLayer);
-		Debug.DrawRay(transform.position + Vector3.up, -transform.right * GridSystem.gridSquareSize, Color.green);
+			bool left = Physics.Raycast(transform.position, -transform.right, GridSystem.gridSquareSize, wallLayer);
+			Debug.DrawRay(transform.position + Vector3.up, -transform.right * GridSystem.gridSquareSize, Color.green);
 
+			Debug.Log("up: " + up + "  right: " + right + "  left: " + left);
 
-		Debug.Log("up: " + up + "  right: " + right + "  left: " + left);
-
-		//Checks for walls
-		if(up || !right || !left) {
-			pendingStopPoint = GridSystem.GetPoint(transform.position);
-
-			if(GridSystem.IsBeyondTargetPosition(pendingStopPoint, transform.forward, transform.position)) {
-				canMove = HandleTurns();
+			if (up || !right || !left)
+			{
+				pendingStopPoint = GridSystem.GetForwardPoint(transform.position, transform.forward);
 			}
 		}
 
-		return canMove;
+		transform.Translate(Vector3.forward * maxSpeed * Time.deltaTime);
+
+		if (GridSystem.IsBeyondTargetPosition(pendingStopPoint, transform.forward, transform.position))
+		{
+			isPendingDecision = true;
+			StopWalking();
+		}
 	}
 
 	public void StartWalking()
@@ -75,26 +81,31 @@ public class Player : NetworkBehaviour
 	public void StopWalking()
 	{
 		bodyAnimator.SetBool("isWalking", false);
-		cameraBoomAnimator.SetBool("isVictory", true);
 		isMoving = false;
 	}
 
-	private void HandleForwardMovement()
+	public void OnVictory()
 	{
-		transform.Translate(Vector3.forward * maxSpeed * Time.deltaTime);
+		StopWalking();
+		cameraBoomAnimator.SetBool("isVictory", true);
 	}
 
-	private bool HandleTurns()
+	private void HandleDecisions()
 	{
-		// Determine what direction the player is facing, and
-		// check if they have reached the next available turn.
-		if (pendingTurnDirection == Vector2.zero) {return false; }
-//		if (!GridSystem.IsBeyondTargetPosition(pendingTurnPosition, transform.forward, transform.position)){ return; }
-
-		ExecuteTurn(pendingTurnDirection);
-		pendingTurnDirection = Vector2.zero;
-		return true;
+		// HandleTurns();
 	}
+
+// 	private void HandleTurns()
+// 	{
+// 		// Determine what direction the player is facing, and
+// 		// check if they have reached the next available turn.
+// 		if (pendingTurnDirection == Vector2.zero) { return; }
+// //		if (!GridSystem.IsBeyondTargetPosition(pendingTurnPosition, transform.forward, transform.position)){ return; }
+// 		Debug.Log("Executing turn");
+
+// 		ExecuteTurn(pendingTurnDirection);
+// 		pendingTurnDirection = Vector2.zero;
+// 	}
 
 	private void OnSwipe(SwipeManager.SwipeDirection direction, Vector2 delta) {
 		if(!isLocalPlayer || !GameManager.IsStarted()) {
@@ -111,6 +122,8 @@ public class Player : NetworkBehaviour
 		{
 			TurnPlayer(Vector2.right);
 		}
+
+		if (isPendingDecision) { ExecuteTurn(pendingTurnDirection); }
 	}
 
 	[ClientRpc]
@@ -146,6 +159,10 @@ public class Player : NetworkBehaviour
 	{
 		float angle = (direction == Vector2.left) ? -90f : 90f;
 		transform.Rotate(0, angle, 0, Space.World);
+		pendingStopPoint = Vector3.zero;
+		previousDecisionPoint = GridSystem.GetPoint(transform.position);
+		isPendingDecision = false;
+		StartWalking();
 		// if (direction == Vector2.left) { myAnimator.SetTrigger("LeftTurn"); }
 		// else if (direction == Vector2.right) { myAnimator.SetTrigger("RightTurn"); }
 	}
