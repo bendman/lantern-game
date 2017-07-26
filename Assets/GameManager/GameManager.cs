@@ -57,21 +57,22 @@ public class GameManager : NetworkBehaviour
 		UIManager.HideUI();
 	}
 
-	public static void FinishGame(NetworkBehaviour winningPlayer)
+	public static void FinishGame(Player winningPlayer)
 	{
-		if (winningPlayer.isLocalPlayer)
-		{
-			UIManager.SetActiveUI(UIManager.instance.sceneVictory);
-		}
-		else
-		{
-			UIManager.SetActiveUI(UIManager.instance.sceneLoss);
-		}
 
 		Player[] players = FindObjectsOfType<Player>();
 		foreach (Player player in players)
 		{
-			player.RpcStop();
+			if (winningPlayer == player)
+			{
+				UIManager.SetActiveUI(UIManager.instance.sceneVictory);
+				player.RpcOnVictory();
+			}
+			else
+			{
+				UIManager.SetActiveUI(UIManager.instance.sceneLoss);
+				player.RpcOnLoss();
+			}
 		}
 	}
 }

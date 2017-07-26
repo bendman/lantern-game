@@ -44,7 +44,7 @@ public class Player : NetworkBehaviour
 
 	private void HandleForwardMovement() {
 		Debug.Log("HandleForwardMovement");
-		transform.Translate(Vector3.forward * maxSpeed * Time.deltaTime);
+		if (isMoving) { transform.Translate(Vector3.forward * maxSpeed * Time.deltaTime); }
 
 		if (GridSystem.GetPoint(transform.position) == previousDecisionPoint) { Debug.Log("in previous decision point"); return; }
 
@@ -93,18 +93,20 @@ public class Player : NetworkBehaviour
 		pendingStopPoint = Vector3.zero;
 	}
 
-	public void OnVictory()
+	[ClientRpc]
+	public void RpcOnVictory()
 	{
 		StopWalking();
 		bodyAnimator.SetTrigger("doVictory");
 		cameraBoomAnimator.SetTrigger("doVictory");
 	}
 
-	public void OnLoss()
+	[ClientRpc]
+	public void RpcOnLoss()
 	{
 		StopWalking();
-		bodyAnimator.SetTrigger("doVictory");
-		// cameraBoomAnimator.SetTrigger("doLoss");
+		bodyAnimator.SetTrigger("doLoss");
+		cameraBoomAnimator.SetTrigger("doVictory");
 	}
 
 	private void HandleDecisions()

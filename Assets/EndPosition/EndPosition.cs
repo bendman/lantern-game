@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EndPosition : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.transform.parent && other.transform.parent.CompareTag("Player"))
+		{
+			Debug.Log("player collision with target");
+			GameManager.FinishGame(other.transform.parent.GetComponent<Player>());
+		}
 	}
 }
