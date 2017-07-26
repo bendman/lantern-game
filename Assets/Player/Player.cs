@@ -122,7 +122,7 @@ public class Player : NetworkBehaviour
 		}
 
 		// Ensure they swipe far enough, not just tap
-		if (Mathf.Abs(delta.x) <= 50f) { return; }
+		if (delta.magnitude < 50f) { return; }
 		else if (direction == SwipeManager.SwipeDirection.Left)
 		{
 			TurnPlayer(Vector2.left);
@@ -130,6 +130,14 @@ public class Player : NetworkBehaviour
 		else if (direction == SwipeManager.SwipeDirection.Right)
 		{
 			TurnPlayer(Vector2.right);
+		}
+		else if (direction == SwipeManager.SwipeDirection.Up)
+		{
+			TurnPlayer(Vector2.up);
+		}
+		else if (direction == SwipeManager.SwipeDirection.Down)
+		{
+			TurnPlayer(Vector2.down);
 		}
 
 		if (isPendingDecision) { ExecuteTurn(pendingTurnDirection); }
@@ -167,7 +175,11 @@ public class Player : NetworkBehaviour
 	private void ExecuteTurn(Vector2 direction)
 	{
 		Debug.Log("Executing turn");
-		float angle = (direction == Vector2.left) ? -90f : 90f;
+		float angle;
+		if (direction == Vector2.left) { angle = -90f; }
+		else if (direction == Vector2.right) { angle = 90f; }
+		else if (direction == Vector2.up) { angle = 0; }
+		else { angle = 180f; }
 		transform.Rotate(0, angle, 0, Space.World);
 		previousDecisionPoint = GridSystem.GetPoint(transform.position);
 		isPendingDecision = false;

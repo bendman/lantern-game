@@ -7,7 +7,7 @@ public class SwipeManager : MonoBehaviour
 	// 
 	// Static properties
 	//
-	public enum SwipeDirection { Left, Right }
+	public enum SwipeDirection { Left, Right, Up, Down }
 	private static SwipeManager instance;
 
 	// 
@@ -66,7 +66,13 @@ public class SwipeManager : MonoBehaviour
 
 		Vector2 touchDelta = finalTouchPosition - initialTouchPosition;
 
-		SwipeDirection direction = touchDelta.x < 0 ? SwipeDirection.Left : SwipeDirection.Right;
+		SwipeDirection direction;
+
+		// Horizontal Swipe
+		if (Mathf.Abs(touchDelta.x) > Mathf.Abs(touchDelta.y))
+		{ direction = touchDelta.x < 0 ? SwipeDirection.Left : SwipeDirection.Right; }
+		// Vertical Swipe
+		else { direction = touchDelta.y < 0 ? SwipeDirection.Down : SwipeDirection.Up; }
 
 		// Handle OnSwipe events
 		if (OnSwipe != null) { OnSwipe(direction, touchDelta); }
