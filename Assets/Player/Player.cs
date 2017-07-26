@@ -31,6 +31,9 @@ public class Player : NetworkBehaviour
 
 	private void Update()
 	{
+		Debug.DrawRay(transform.position + Vector3.up, transform.forward * GridSystem.gridSquareSize, Color.blue);
+		Debug.DrawRay(transform.position + Vector3.up, transform.right * GridSystem.gridSquareSize, Color.green);
+		Debug.DrawRay(transform.position + Vector3.up, -transform.right * GridSystem.gridSquareSize, Color.red);
 		//userMoving = CanMove();
 		if (!isLocalPlayer || !GameManager.IsStarted()) { return; }
 
@@ -40,35 +43,40 @@ public class Player : NetworkBehaviour
 	}
 
 	private void HandleForwardMovement() {
+		Debug.Log("HandleForwardMovement");
+		transform.Translate(Vector3.forward * maxSpeed * Time.deltaTime);
+
+		if (GridSystem.GetPoint(transform.position) == previousDecisionPoint) { Debug.Log("in previous decision point"); return; }
+
 		// No stop point, so continue forward looking for one on the way
-		if (pendingStopPoint == Vector3.zero && GridSystem.GetPoint(transform.position) != previousDecisionPoint)
+		if (pendingStopPoint == Vector3.zero)
 		{
-			int wallLayer = 1 << 9;
 
-			bool up = Physics.Raycast(transform.position, transform.forward, GridSystem.gridSquareSize, wallLayer);
-			Debug.DrawRay(transform.position + Vector3.up, transform.forward * GridSystem.gridSquareSize, Color.blue);
+			bool up = HasAdjascentWall(transform.forward);
+			bool right = HasAdjascentWall(transform.right);
+			bool left = HasAdjascentWall(-transform.right);
 
-			bool right = Physics.Raycast(transform.position, transform.right, GridSystem.gridSquareSize, wallLayer);
-			Debug.DrawRay(transform.position + Vector3.up, transform.right * GridSystem.gridSquareSize, Color.red);
-
-			bool left = Physics.Raycast(transform.position, -transform.right, GridSystem.gridSquareSize, wallLayer);
-			Debug.DrawRay(transform.position + Vector3.up, -transform.right * GridSystem.gridSquareSize, Color.green);
-
-			Debug.Log("up: " + up + "  right: " + right + "  left: " + left);
+			Debug.Log("no pending stop point, wall check. up: " + up + "  right: " + right + "  left: " + left);
 
 			if (up || !right || !left)
 			{
 				pendingStopPoint = GridSystem.GetForwardPoint(transform.position, transform.forward);
+				Debug.Log("failed wall check. pendingStopPoint: " + pendingStopPoint);
 			}
 		}
-
-		transform.Translate(Vector3.forward * maxSpeed * Time.deltaTime);
-
-		if (GridSystem.IsBeyondTargetPosition(pendingStopPoint, transform.forward, transform.position))
+		else if (GridSystem.IsBeyondTargetPosition(pendingStopPoint, transform.forward, transform.position))
 		{
+			Debug.Log("beyond pendingStopPoint: " + pendingStopPoint);
 			isPendingDecision = true;
 			StopWalking();
 		}
+	}
+
+	private bool HasAdjascentWall(Vector3 direction)
+	{
+		int wallLayer = 1 << 9;
+		bool hasWall = Physics.Raycast(transform.position, direction, GridSystem.gridSquareSize, wallLayer);
+		return hasWall;
 	}
 
 	public void StartWalking()
@@ -82,6 +90,7 @@ public class Player : NetworkBehaviour
 	{
 		bodyAnimator.SetBool("isWalking", false);
 		isMoving = false;
+		pendingStopPoint = Vector3.zero;
 	}
 
 	public void OnVictory()
@@ -157,9 +166,9 @@ public class Player : NetworkBehaviour
 
 	private void ExecuteTurn(Vector2 direction)
 	{
+		Debug.Log("Executing turn");
 		float angle = (direction == Vector2.left) ? -90f : 90f;
 		transform.Rotate(0, angle, 0, Space.World);
-		pendingStopPoint = Vector3.zero;
 		previousDecisionPoint = GridSystem.GetPoint(transform.position);
 		isPendingDecision = false;
 		StartWalking();
