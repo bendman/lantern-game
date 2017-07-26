@@ -30,6 +30,7 @@ public class Player : NetworkBehaviour
 	private void Update()
 	{
 		//userMoving = CanMove();
+		Debug.Log("canmove: " + CanMove());
 		if (!isLocalPlayer || !GameManager.IsStarted() || !CanMove()) { return; }
 
 		HandleForwardMovement();
@@ -40,15 +41,17 @@ public class Player : NetworkBehaviour
 		bool canMove = true;
 		int wallLayer = 1 << 9;
 
-		bool up = Physics.Raycast(transform.position, transform.forward, GridSystem.gridSquareSize, wallLayer);
-		Debug.DrawRay(transform.position + Vector3.up, transform.forward, Color.blue);
+		bool up = Physics.Raycast(transform.position, transform.forward, GridSystem.gridSquareSize);//, wallLayer);
+		Debug.DrawRay(transform.position + Vector3.up, transform.forward * GridSystem.gridSquareSize, Color.blue);
 
-		bool right = Physics.Raycast(transform.position, transform.right, GridSystem.gridSquareSize, wallLayer);
-		Debug.DrawRay(transform.position + Vector3.up, transform.right, Color.red);
+		bool right = Physics.Raycast(transform.position, transform.right, GridSystem.gridSquareSize);//, wallLayer);
+		Debug.DrawRay(transform.position + Vector3.up, transform.right * GridSystem.gridSquareSize, Color.red);
 
-		bool left = Physics.Raycast(transform.position, -transform.right, GridSystem.gridSquareSize, wallLayer);
-		Debug.DrawRay(transform.position + Vector3.up, -transform.right, Color.green);
+		bool left = Physics.Raycast(transform.position, -transform.right, GridSystem.gridSquareSize);//, wallLayer);
+		Debug.DrawRay(transform.position + Vector3.up, -transform.right * GridSystem.gridSquareSize, Color.green);
 
+
+		Debug.Log("up: " + up + "  right: " + right + "  left: " + left);
 
 		//Checks for walls
 		if(up || !right || !left) {
