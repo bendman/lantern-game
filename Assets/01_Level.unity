@@ -108,6 +108,64 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &82876902
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400006, guid: 976aca0a76c6044328d9ba7e73cf69d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 976aca0a76c6044328d9ba7e73cf69d2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 976aca0a76c6044328d9ba7e73cf69d2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 976aca0a76c6044328d9ba7e73cf69d2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 976aca0a76c6044328d9ba7e73cf69d2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 976aca0a76c6044328d9ba7e73cf69d2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 976aca0a76c6044328d9ba7e73cf69d2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 976aca0a76c6044328d9ba7e73cf69d2, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400034, guid: 976aca0a76c6044328d9ba7e73cf69d2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.70251906
+      objectReference: {fileID: 0}
+    - target: {fileID: 400034, guid: 976aca0a76c6044328d9ba7e73cf69d2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.07984515
+      objectReference: {fileID: 0}
+    - target: {fileID: 400034, guid: 976aca0a76c6044328d9ba7e73cf69d2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.6981901
+      objectReference: {fileID: 0}
+    - target: {fileID: 400034, guid: 976aca0a76c6044328d9ba7e73cf69d2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.11234909
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 976aca0a76c6044328d9ba7e73cf69d2, type: 3}
+  m_IsPrefabParent: 0
 --- !u!1001 &85330418
 Prefab:
   m_ObjectHideFlags: 0
