@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: a915491f9b214479d909f7b929f57c8f
-timeCreated: 1500935230
+guid: 976aca0a76c6044328d9ba7e73cf69d2
+timeCreated: 1501107742
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -8,16 +8,16 @@ ModelImporter:
     100000: Armature
     100002: Foot.L
     100004: Foot.R
-    100006: Hand.L
-    100008: Hand.R
-    100010: head
-    100012: hips
-    100014: LowerArm.L
-    100016: LowerArm.R
-    100018: LowerLeg.L
-    100020: LowerLeg.R
-    100022: Miner
-    100024: //RootNode
+    100006: //RootNode
+    100008: Hand.L
+    100010: Hand.R
+    100012: head
+    100014: hips
+    100016: LowerArm.L
+    100018: LowerArm.R
+    100020: LowerLeg.L
+    100022: LowerLeg.R
+    100024: Miner
     100026: spine
     100028: UpperArm.L
     100030: UpperArm.R
@@ -26,26 +26,26 @@ ModelImporter:
     400000: Armature
     400002: Foot.L
     400004: Foot.R
-    400006: Hand.L
-    400008: Hand.R
-    400010: head
-    400012: hips
-    400014: LowerArm.L
-    400016: LowerArm.R
-    400018: LowerLeg.L
-    400020: LowerLeg.R
-    400022: Miner
-    400024: //RootNode
+    400006: //RootNode
+    400008: Hand.L
+    400010: Hand.R
+    400012: head
+    400014: hips
+    400016: LowerArm.L
+    400018: LowerArm.R
+    400020: LowerLeg.L
+    400022: LowerLeg.R
+    400024: Miner
     400026: spine
     400028: UpperArm.L
     400030: UpperArm.R
     400032: UpperLeg.L
     400034: UpperLeg.R
     4300000: Miner
-    7400000: Armature|Action
-    7400002: Armature|ArmatureAction
-    7400004: Armature|Idle
-    7400006: Armature|walk cycle
+    7400000: Armature|Idle
+    7400002: 'Armature|lose '
+    7400004: Armature|walk cycle
+    7400006: Armature|win
     9500000: //RootNode
     13700000: Miner
   materials:
@@ -57,7 +57,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: <Root Transform>
+    motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
@@ -71,134 +71,6 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     clipAnimations:
-    - serializedVersion: 16
-      name: Armature|Action
-      takeName: Armature|Action
-      firstFrame: 0
-      lastFrame: 1
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Armature
-        weight: 1
-      - path: Armature/hips
-        weight: 1
-      - path: Armature/hips/spine
-        weight: 1
-      - path: Armature/hips/spine/head
-        weight: 1
-      - path: Armature/hips/spine/UpperArm.L
-        weight: 1
-      - path: Armature/hips/spine/UpperArm.L/LowerArm.L
-        weight: 1
-      - path: Armature/hips/spine/UpperArm.L/LowerArm.L/Hand.L
-        weight: 1
-      - path: Armature/hips/spine/UpperArm.R
-        weight: 1
-      - path: Armature/hips/spine/UpperArm.R/LowerArm.R
-        weight: 1
-      - path: Armature/hips/spine/UpperArm.R/LowerArm.R/Hand.R
-        weight: 1
-      - path: Armature/hips/UpperLeg.L
-        weight: 1
-      - path: Armature/hips/UpperLeg.L/LowerLeg.L
-        weight: 1
-      - path: Armature/hips/UpperLeg.L/LowerLeg.L/Foot.L
-        weight: 1
-      - path: Armature/hips/UpperLeg.R
-        weight: 1
-      - path: Armature/hips/UpperLeg.R/LowerLeg.R
-        weight: 1
-      - path: Armature/hips/UpperLeg.R/LowerLeg.R/Foot.R
-        weight: 1
-      - path: Miner
-        weight: 1
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Armature|ArmatureAction
-      takeName: Armature|ArmatureAction
-      firstFrame: 0
-      lastFrame: 1
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Armature
-        weight: 1
-      - path: Armature/hips
-        weight: 1
-      - path: Armature/hips/spine
-        weight: 1
-      - path: Armature/hips/spine/head
-        weight: 1
-      - path: Armature/hips/spine/UpperArm.L
-        weight: 1
-      - path: Armature/hips/spine/UpperArm.L/LowerArm.L
-        weight: 1
-      - path: Armature/hips/spine/UpperArm.L/LowerArm.L/Hand.L
-        weight: 1
-      - path: Armature/hips/spine/UpperArm.R
-        weight: 1
-      - path: Armature/hips/spine/UpperArm.R/LowerArm.R
-        weight: 1
-      - path: Armature/hips/spine/UpperArm.R/LowerArm.R/Hand.R
-        weight: 1
-      - path: Armature/hips/UpperLeg.L
-        weight: 1
-      - path: Armature/hips/UpperLeg.L/LowerLeg.L
-        weight: 1
-      - path: Armature/hips/UpperLeg.L/LowerLeg.L/Foot.L
-        weight: 1
-      - path: Armature/hips/UpperLeg.R
-        weight: 1
-      - path: Armature/hips/UpperLeg.R/LowerLeg.R
-        weight: 1
-      - path: Armature/hips/UpperLeg.R/LowerLeg.R/Foot.R
-        weight: 1
-      - path: Miner
-        weight: 1
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Armature|Idle
       takeName: Armature|Idle
@@ -264,10 +136,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|walk cycle
-      takeName: Armature|walk cycle
+      name: 'Armature|lose '
+      takeName: 'Armature|lose '
       firstFrame: 0
-      lastFrame: 79
+      lastFrame: 100
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -275,7 +147,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 1
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -287,7 +159,171 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/hips
+        weight: 1
+      - path: Armature/hips/spine
+        weight: 1
+      - path: Armature/hips/spine/head
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.L
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.R
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/hips/UpperLeg.L
+        weight: 1
+      - path: Armature/hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/hips/UpperLeg.R
+        weight: 1
+      - path: Armature/hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Miner
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|walk cycle
+      takeName: Armature|walk cycle
+      firstFrame: 0
+      lastFrame: 79
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/hips
+        weight: 1
+      - path: Armature/hips/spine
+        weight: 1
+      - path: Armature/hips/spine/head
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.L
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.R
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/hips/UpperLeg.L
+        weight: 1
+      - path: Armature/hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/hips/UpperLeg.R
+        weight: 1
+      - path: Armature/hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Miner
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|win
+      takeName: Armature|win
+      firstFrame: 0
+      lastFrame: 75
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/hips
+        weight: 1
+      - path: Armature/hips/spine
+        weight: 1
+      - path: Armature/hips/spine/head
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.L
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.L/LowerArm.L/Hand.L
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.R
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/hips/spine/UpperArm.R/LowerArm.R/Hand.R
+        weight: 1
+      - path: Armature/hips/UpperLeg.L
+        weight: 1
+      - path: Armature/hips/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/hips/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/hips/UpperLeg.R
+        weight: 1
+      - path: Armature/hips/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/hips/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Miner
+        weight: 1
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
@@ -326,7 +362,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    rootMotionBoneName: 
+    rootMotionBoneName: Miner
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
