@@ -9,10 +9,14 @@ public class MapMaker : MonoBehaviour {
 
 	private string[][] currentLevel;
 
+	private GameObject wallContainer;
+	private GameObject torchContainer;
+
 	public GameObject spawnPrefab;
 	public GameObject wallPrefab;
 	public GameObject floorPrefab;
 	public GameObject goalPerfab;
+	public GameObject torchPrefab;
 
 	public const string s_spawn = "2";
 	public const string s_goal = "3";
@@ -48,6 +52,15 @@ public class MapMaker : MonoBehaviour {
 				tempX = (x*cellSize) - (level.Length*cellSize/2);
 				tempZ = (-z*cellSize) + (level[0].Length*cellSize/2);
 
+				if (x > 1 && x < level[0].Length - 1 && z > 0 && z < level.Length - 2 && x % 2 != z % 2)
+				{
+					PlaceTorch(new Vector3(
+						tempX, // + (0.5f * cellSize),
+						4f,
+						tempZ  // + (0.5f * cellSize)
+					));
+				}
+
 				switch(level[z][x]) {
 				case s_spawn:
 					PlacePlayerSpawn(new Vector3(tempX + (cellSize/2), 0f, tempZ + (cellSize/2)));
@@ -71,7 +84,14 @@ public class MapMaker : MonoBehaviour {
 
 	private void PlaceWall(Vector3 position)
 	{
+		if (!wallContainer)
+		{
+			wallContainer = new GameObject("Walls");
+			wallContainer.transform.position = Vector3.zero;
+		}
+
 		GameObject wall = Instantiate(wallPrefab, position, Quaternion.identity);
+		wall.transform.parent = wallContainer.transform;
 	}
 
 	private void PlacePlayerSpawn(Vector3 position)
@@ -83,4 +103,17 @@ public class MapMaker : MonoBehaviour {
 	{
 		GameObject goal = Instantiate(goalPerfab, position, Quaternion.identity);
 	}
+
+	private void PlaceTorch(Vector3 position)
+	{
+		if (!torchContainer)
+		{
+			torchContainer = new GameObject("Torches");
+			torchContainer.transform.position = Vector3.zero;
+		}
+
+		GameObject torch = Instantiate(torchPrefab, position, Quaternion.identity);
+		torch.transform.parent = torchContainer.transform;
+	}
+
 }

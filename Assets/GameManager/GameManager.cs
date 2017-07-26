@@ -15,8 +15,6 @@ public class GameManager : NetworkBehaviour
 	//
 	public MapMaker mapper;
 	public string level = "testing";
-	[SerializeField]
-	private GameObject torchPrefab;
 	[SyncVar]
 	private bool isRoundStarted;
 
@@ -57,31 +55,6 @@ public class GameManager : NetworkBehaviour
 		}
 
 		UIManager.HideUI();
-		PlaceTorches();
-	}
-
-	/// Temporary until we get a maze in place, this just places torches
-	/// at regular intervals.
-	private void PlaceTorches()
-	{
-		for (int xSquare = 0; xSquare <= GridSystem.levelSquaresPerSide; xSquare += 1)
-		{
-			for (int zSquare = 0; zSquare <= GridSystem.levelSquaresPerSide; zSquare += 1)
-			{
-				if (xSquare % 2 == zSquare % 2) { continue; }
-				PlaceTorch(new Vector3(
-					(xSquare - (GridSystem.levelSquaresPerSide / 2) - 0.5f) * GridSystem.gridSquareSize,
-					2f,
-					(zSquare - (GridSystem.levelSquaresPerSide / 2) - 0.5f) * GridSystem.gridSquareSize
-				));
-			}
-		}
-	}
-
-	public static void PlaceTorch(Vector3 position)
-	{
-		GameObject torch = Instantiate(instance.torchPrefab, position, Quaternion.identity);
-		NetworkServer.Spawn(torch);
 	}
 
 	public static void FinishGame(NetworkBehaviour winningPlayer)

@@ -58,3 +58,5 @@ MonoBehaviour:
   floorPrefab: {fileID: 1794519183106946, guid: 01fe09fc7323545c0bff3869fa56647e,
     type: 2}
   goalPerfab: {fileID: 1135535660450874, guid: 38934b7dcda4f1542a020966c4f1f0e2, type: 2}
+  torchPrefab: {fileID: 1317711612047744, guid: 774dca042ec73401a9d7d367b2c354c4,
+    type: 2}
