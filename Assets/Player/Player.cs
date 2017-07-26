@@ -83,7 +83,6 @@ public class Player : NetworkBehaviour
 	public void StartWalking()
 	{
 		bodyAnimator.SetBool("isWalking", true);
-		cameraBoomAnimator.SetBool("isVictory", false);
 		isMoving = true;
 	}
 
@@ -97,7 +96,15 @@ public class Player : NetworkBehaviour
 	public void OnVictory()
 	{
 		StopWalking();
-		cameraBoomAnimator.SetBool("isVictory", true);
+		bodyAnimator.SetTrigger("doVictory");
+		cameraBoomAnimator.SetTrigger("doVictory");
+	}
+
+	public void OnLoss()
+	{
+		StopWalking();
+		bodyAnimator.SetTrigger("doVictory");
+		// cameraBoomAnimator.SetTrigger("doLoss");
 	}
 
 	private void HandleDecisions()
