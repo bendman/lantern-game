@@ -72,6 +72,7 @@ public class Player : NetworkBehaviour
 		}
 	}
 
+	private bool HasAdjascentWall(Vector2 direction) { return HasAdjascentWall(new Vector3(direction.x, 0, direction.y)); }
 	private bool HasAdjascentWall(Vector3 direction)
 	{
 		int wallLayer = 1 << 9;
@@ -121,25 +122,29 @@ public class Player : NetworkBehaviour
 			return;
 		}
 
+		Vector2 turnDirection;
+
 		// Ensure they swipe far enough, not just tap
 		if (delta.magnitude < 50f) { return; }
 		else if (direction == SwipeManager.SwipeDirection.Left)
 		{
-			TurnPlayer(Vector2.left);
+			turnDirection = Vector2.left;
 		}
 		else if (direction == SwipeManager.SwipeDirection.Right)
 		{
-			TurnPlayer(Vector2.right);
+			turnDirection = Vector2.right;
 		}
 		else if (direction == SwipeManager.SwipeDirection.Up)
 		{
-			TurnPlayer(Vector2.up);
+			turnDirection = Vector2.up;
 		}
-		else if (direction == SwipeManager.SwipeDirection.Down)
+		else
 		{
-			TurnPlayer(Vector2.down);
+			turnDirection = Vector2.down;
 		}
 
+		if (HasAdjascentWall(turnDirection)) { return; }
+		TurnPlayer(turnDirection);
 		if (isPendingDecision) { ExecuteTurn(pendingTurnDirection); }
 	}
 
