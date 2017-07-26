@@ -143,7 +143,9 @@ public class Player : NetworkBehaviour
 			turnDirection = Vector2.down;
 		}
 
-		if (HasAdjascentWall(turnDirection)) { return; }
+		Debug.Log("OnSwipe turnDirection:" + turnDirection);
+
+		if (HasAdjascentWall(transform.TransformDirection(turnDirection))) { Debug.Log("adjascent wall"); return; }
 		TurnPlayer(turnDirection);
 		if (isPendingDecision) { ExecuteTurn(pendingTurnDirection); }
 	}
