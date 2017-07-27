@@ -6,6 +6,6 @@ public class WallTorch : MonoBehaviour
 {
 	public void Light()
 	{
-		transform.Find("TorchFlame").gameObject.SetActive(true);
+		GetComponent<Animator>().SetBool("isLit", true);
 	}
 }

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4232900713976872}
   - component: {fileID: 114903202296782366}
   - component: {fileID: 65046065827224882}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TorchLighter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4211212008333466}
   - component: {fileID: 137638504361044170}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Miner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4587127791938862}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LowerLeg.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4342959493350472}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LowerArm.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4596319414608308}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4324560260512806}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LowerArm.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4462776128653682}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LowerLeg.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4742879122869400}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Foot.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 95223002680053574}
   - component: {fileID: 136957857523274252}
   - component: {fileID: 54076874887488722}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4342330022511958}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4501785371350806}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: UpperLeg.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4960595709392764}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: UpperLeg.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 114218974372494190}
   - component: {fileID: 114549684471817662}
   - component: {fileID: 114556811341444360}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4046001453474328}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hand.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4820580950629298}
   - component: {fileID: 108901199147386912}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HeadLamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 124481693796055442}
   - component: {fileID: 92959469125800680}
   - component: {fileID: 81393940580253940}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4945776601502296}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hand.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4706499893359492}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4599885224869244}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Foot.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4425678876404338}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: UpperArm.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4705590584612552}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: UpperArm.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4370254986971744}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -364,7 +364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4249899084261204}
   - component: {fileID: 95624139637785120}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CameraBoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -530,7 +530,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1589023289060340}
-  m_LocalRotation: {x: 0.7025191, y: -0.07984516, z: -0.69819015, w: 0.11234902}
+  m_LocalRotation: {x: 0.70251906, y: -0.07984515, z: -0.6981901, w: 0.11234898}
   m_LocalPosition: {x: 0.0014738167, y: -0.0007287071, z: -3.352761e-10}
   m_LocalScale: {x: 1, y: 1.0000005, z: 1.0000023}
   m_Children:
@@ -750,10 +750,10 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1033824569178302}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 8, z: 2}
+  m_Size: {x: 8, y: 8, z: 4}
   m_Center: {x: 0, y: 2, z: 0}
 --- !u!81 &81393940580253940
 AudioListener:

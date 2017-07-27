@@ -16,7 +16,7 @@ public class MapMaker : MonoBehaviour {
 	public GameObject wallPrefab;
 	public GameObject floorPrefab;
 	public GameObject goalPerfab;
-	public GameObject torchPrefab;
+	public GameObject lanternPrefab;
 
 	public const string s_spawn = "2";
 	public const string s_goal = "3";
@@ -52,13 +52,16 @@ public class MapMaker : MonoBehaviour {
 				tempX = (x*cellSize) - (level.Length*cellSize/2);
 				tempZ = (-z*cellSize) + (level[0].Length*cellSize/2);
 
-				if (x > 1 && x < level[0].Length - 1 && z > 0 && z < level.Length - 2 && x % 2 != z % 2)
+				if (level[z][x] != s_wall && // Not within walls
+					x > 1 && x < level[0].Length - 1 && z > 0 && z < level.Length - 2 &&
+					x % 2 != z % 2) // every other space
 				{
-					PlaceTorch(new Vector3(
-						tempX, // + (0.5f * cellSize),
-						4f,
-						tempZ  // + (0.5f * cellSize)
-					));
+					// TODO: orient lantern to nearest wall
+					PlaceLantern(
+						new Vector3( tempX + (cellSize / 2), 4f, tempZ + (cellSize / 2)),
+						level,
+						new Vector2(z, x)
+					);
 				}
 
 				switch(level[z][x]) {
@@ -76,6 +79,16 @@ public class MapMaker : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	private Vector2 GetNearestWall(string[][] level, Vector2 gridSquare)
+	{
+		int x = Mathf.FloorToInt(gridSquare.x);
+		int y = Mathf.FloorToInt(gridSquare.y);
+		if (x-1 >= 0 && level[x-1][y] == s_wall) { return Vector2.left; }
+		else if (x+1 <= level.Length - 1 && level[x+1][y] == s_wall) { return Vector2.right; }
+		else if (y-1 >= 0 && level[x][y-1] == s_wall) { return Vector2.down; }
+		else { return Vector2.up; }
 	}
 
 	private void PlaceFloor(Vector3 postion) {
@@ -104,7 +117,7 @@ public class MapMaker : MonoBehaviour {
 		GameObject goal = Instantiate(goalPerfab, position, Quaternion.identity);
 	}
 
-	private void PlaceTorch(Vector3 position)
+	private void PlaceLantern(Vector3 position, string[][] level, Vector2 gridSquare)
 	{
 		if (!torchContainer)
 		{
@@ -112,7 +125,10 @@ public class MapMaker : MonoBehaviour {
 			torchContainer.transform.position = Vector3.zero;
 		}
 
-		GameObject torch = Instantiate(torchPrefab, position, Quaternion.identity);
+		Vector2 nearestWallAngle = GetNearestWall(level, gridSquare);
+		float wallAngle = Vector2.Angle(Vector2.left, nearestWallAngle);
+		Quaternion wallRotation = Quaternion.Euler(0, wallAngle, 0);
+		GameObject torch = Instantiate(lanternPrefab, position, wallRotation);
 		torch.transform.parent = torchContainer.transform;
 	}
 
