@@ -8,15 +8,15 @@ public class GameManager : NetworkBehaviour
 	//
 	// Static properties
 	//
-	private static GameManager instance;
+	private static GameManager instance = null;
 
 	//
 	// Instance properties
 	//
-	public MapMaker mapper;
 	public string level = "testing";
 	[SyncVar]
 	private bool isRoundStarted;
+	private MapMaker mapper;
 
 	//
 	// Methods
@@ -34,17 +34,19 @@ public class GameManager : NetworkBehaviour
 
 		// Initialize round
 		isRoundStarted = false;
+		mapper = GetComponent<MapMaker>();
 	}
 
 	public static bool IsStarted() { return instance.isRoundStarted; }
 
-	private void Start()
-	{
-		mapper.makeMap(level + ".csv", GridSystem.gridSquareSize);
-	}
+	// private void Start()
+	// {
+	// 	mapper.MakeMap(level + ".csv", GridSystem.gridSquareSize);
+	// }
 
 	public void StartRound()
 	{
+
 		Debug.Log("Setting Round Started");
 		isRoundStarted = true;
 		Player[] players = FindObjectsOfType<Player>();

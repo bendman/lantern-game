@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class MapMaker : MonoBehaviour {
+public class MapMaker : NetworkBehaviour {
 
 	public string directory;
 
@@ -23,7 +24,7 @@ public class MapMaker : MonoBehaviour {
 	public const string s_pathway = "0";
 	public const string s_wall = "1";
 
-	public void makeMap(string file, float cellSize) {
+	public void MakeMap(string file, float cellSize) {
 		currentLevel = LoadLevel(file);
 		Populate(currentLevel, cellSize);
 	}
@@ -93,6 +94,7 @@ public class MapMaker : MonoBehaviour {
 
 	private void PlaceFloor(Vector3 postion) {
 		GameObject floor = Instantiate(floorPrefab, postion, Quaternion.identity);
+		NetworkServer.Spawn(floor);
 	}
 
 	private void PlaceWall(Vector3 position)
@@ -101,20 +103,24 @@ public class MapMaker : MonoBehaviour {
 		{
 			wallContainer = new GameObject("Walls");
 			wallContainer.transform.position = Vector3.zero;
+			NetworkServer.Spawn(wallContainer);
 		}
 
 		GameObject wall = Instantiate(wallPrefab, position, Quaternion.identity);
 		wall.transform.parent = wallContainer.transform;
+		NetworkServer.Spawn(wall);
 	}
 
 	private void PlacePlayerSpawn(Vector3 position)
 	{
 		GameObject playerSpawn = Instantiate(spawnPrefab, position, Quaternion.identity);
+		NetworkServer.Spawn(playerSpawn);
 	}
 
 	private void PlaceGoal(Vector3 position)
 	{
 		GameObject goal = Instantiate(goalPerfab, position, Quaternion.identity);
+		NetworkServer.Spawn(goal);
 	}
 
 	private void PlaceLantern(Vector3 position, string[][] level, Vector2 gridSquare)
@@ -123,6 +129,7 @@ public class MapMaker : MonoBehaviour {
 		{
 			torchContainer = new GameObject("Torches");
 			torchContainer.transform.position = Vector3.zero;
+			NetworkServer.Spawn(torchContainer);
 		}
 
 		Vector2 nearestWallAngle = GetNearestWall(level, gridSquare);
@@ -130,6 +137,7 @@ public class MapMaker : MonoBehaviour {
 		Quaternion wallRotation = Quaternion.Euler(0, wallAngle, 0);
 		GameObject torch = Instantiate(lanternPrefab, position, wallRotation);
 		torch.transform.parent = torchContainer.transform;
+		NetworkServer.Spawn(torch);
 	}
 
 }

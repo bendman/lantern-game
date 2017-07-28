@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4512064040932824}
   - component: {fileID: 114431507413856840}
   - component: {fileID: 114156195046985818}
+  - component: {fileID: 114742231069669952}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -85,6 +86,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapper: {fileID: 114507925612371450, guid: 2d8c1e16058055b4fb4e253fad62d2f5, type: 2}
-  level: testing
-  torchPrefab: {fileID: 1317711612047744, guid: 774dca042ec73401a9d7d367b2c354c4,
+  level: Labri-1
+--- !u!114 &114742231069669952
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1292457012224062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f134ea152015c8f4fa9de4e3b305fec2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  directory: Assets/MapMaker/Levels
+  spawnPrefab: {fileID: 1992079730676364, guid: 58be8865bf0064487b4a66a7af71f9e0,
+    type: 2}
+  wallPrefab: {fileID: 1526630529468036, guid: 7a0a6ed9dd123334d9e39b6df502dec7, type: 2}
+  floorPrefab: {fileID: 1794519183106946, guid: 01fe09fc7323545c0bff3869fa56647e,
+    type: 2}
+  goalPerfab: {fileID: 1135535660450874, guid: 38934b7dcda4f1542a020966c4f1f0e2, type: 2}
+  lanternPrefab: {fileID: 1444222874847528, guid: 72fbbbc4231ed4bd48c0d0aa06086c7e,
     type: 2}

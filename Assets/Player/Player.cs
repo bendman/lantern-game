@@ -169,6 +169,7 @@ public class Player : NetworkBehaviour
 		SwipeManager.OnSwipe += OnSwipe;
 
 		// Disable non-player camera and enable player camera and light if it's the local player
+		UIManager.HideUI();
 		Camera.main.gameObject.SetActive(false);
 		GetComponentInChildren<Camera>(true).gameObject.SetActive(true);
 		StartWalking();
